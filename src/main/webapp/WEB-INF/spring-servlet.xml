@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd  
+    http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-4.0.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+    
+	<context:component-scan base-package="com.bridgeit" />
+
+	<mvc:annotation-driven />
+
+	<bean id="service" class="com.bridgeit.service.UserService" />
+
+	<bean id="dao" class="com.bridgeit.dao.UserDaoImpl" />
+
+	<bean id="emailService" class="com.bridgeit.utility.EmailService" />
+
+	<bean id="email" class="com.bridgeit.utility.SendEmailUtility" />
+
+	<bean id="regVal" class="com.bridgeit.validation.RegisterValidator" />
+
+	<bean id="logVal" class="com.bridgeit.validation.LoginValidator" />
+    
+    <bean id="noteDao" class="com.bridgeit.dao.NoteDaoImpl"/>
+    
+    <bean id="noteService" class="com.bridgeit.service.NoteService"/>
+    
+   
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames" value="resources/validation" />
+	</bean>
+
+	<context:property-placeholder location="classpath:message.properties" />
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${driverClass}" />
+		<property name="jdbcUrl" value="${dbUrl}" />
+		<property name="user" value="${dbUser}" />
+		<property name="password" value="${dbPassword}" />
+		<property name="maxPoolSize" value="${max_pool_size}" />
+		<property name="minPoolSize" value="${min_pool_size}" />
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.bridgeit.model.User</value>
+				<value>com.bridgeit.model.Login</value>
+				<value>com.bridgeit.model.Note</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.ddl}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>
