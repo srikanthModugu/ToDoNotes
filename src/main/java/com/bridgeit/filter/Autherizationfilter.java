@@ -22,7 +22,7 @@ public class Autherizationfilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
-
+ System.out.println("it si coming here");
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 	
@@ -31,8 +31,9 @@ public class Autherizationfilter implements Filter {
 
 			String token = request.getHeader("token");
 			String userId = Token.verfyToken(token);
+			System.out.println("id value "+userId);
 			if (userId != null) {
-
+				request.setAttribute("userid", userId);
 				chain.doFilter(req, res);
 				return;
 			}

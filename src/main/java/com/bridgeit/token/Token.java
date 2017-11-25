@@ -33,6 +33,7 @@ public class Token{
 	
 	public static String verfyToken(String token) {
 		try {
+			System.out.println("printing token here  "+token);
 			 Claims claims = Jwts.parser()
 					 .setSigningKey(key)
 					 .parseClaimsJws(token).getBody();

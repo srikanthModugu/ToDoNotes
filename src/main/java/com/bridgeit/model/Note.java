@@ -20,7 +20,7 @@ public class Note {
 	@Id
 	@GenericGenerator(name = "id", strategy = "increment")
 	@GeneratedValue(generator = "id")
-	private int noteId;
+	private long noteId;
 	
 	@Column(name = "note_title")
 	private String title;
@@ -34,17 +34,21 @@ public class Note {
 	@Column(name= "note_modifiedDate")
 	private Date modifiedDate;
     
+	@Column(name="is_archive")
+	private boolean isArchive;
+	
+	@Column(name="is_trash")
+	private boolean isTrash;
+	
+	@Column(name="is_pinned")
+	private boolean pinned;
+	
 	@JsonIgnore
 	@JoinColumn(name="userId")
 	@ManyToOne(cascade = CascadeType.ALL)
 	private User user;
-	public int getNoteId() {
-		return noteId;
-	}
-
-	public void setNoteId(int noteId) {
-		this.noteId = noteId;
-	}
+	
+	
 
 	public String getTitle() {
 		return title;
@@ -85,11 +89,48 @@ public class Note {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
+
+	public long getNoteId() {
+		return noteId;
+	}
+
+	public void setNoteId(long noteId) {
+		this.noteId = noteId;
+	}
+
+	public boolean isArchive() {
+		return isArchive;
+	}
+
+	public void setArchive(boolean isArchive) {
+		this.isArchive = isArchive;
+	}
+
+	public boolean isTrash() {
+		return isTrash;
+	}
+
+	public void setTrash(boolean isTrash) {
+		this.isTrash = isTrash;
+	}
+
+	public boolean isPinned() {
+		return pinned;
+	}
+
+	public void setPinned(boolean pin) {
+		this.pinned = pin;
+	}
+
+	
 
 	@Override
 	public String toString() {
 		return "Note [noteId=" + noteId + ", title=" + title + ", description=" + description + ", createdDate="
-				+ createdDate + ", modifiedDate=" + modifiedDate + "]";
+				+ createdDate + ", modifiedDate=" + modifiedDate + ", isArchive=" + isArchive + ", isTrash=" + isTrash
+				+ ", pin=" + pinned + ", user=" + user + "]";
 	}
 
 	@Override

@@ -20,11 +20,11 @@
 
 	<mvc:annotation-driven />
 
-	<bean id="service" class="com.bridgeit.service.UserService" />
+	<bean id="userService" class="com.bridgeit.service.UserService" />
 
-	<bean id="dao" class="com.bridgeit.dao.UserDaoImpl" />
+	<bean id="userDao" class="com.bridgeit.dao.UserDaoImpl" />
 
-	<bean id="emailService" class="com.bridgeit.utility.EmailService" />
+	<bean id="emailService" class="com.bridgeit.service.EmailService" />
 
 	<bean id="email" class="com.bridgeit.utility.SendEmailUtility" />
 
@@ -36,11 +36,12 @@
     
     <bean id="noteService" class="com.bridgeit.service.NoteService"/>
     
+    <bean id="fbLogin" class="com.bridgeit.socialLogin.FaceBookLogin"/>
+    
+    <bean id="googleLogin" class="com.bridgeit.socialLogin.GoogleLogin"/>
    
-	<bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basenames" value="resources/validation" />
-	</bean>
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<property name="basenames" value="/resources/validation"/></bean>
 
 	<context:property-placeholder location="classpath:message.properties" />
 

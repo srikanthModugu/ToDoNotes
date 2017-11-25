@@ -33,7 +33,8 @@ public class User {
 	@Column(name = "user_phnNo")
 	private String phnNo;
     
-	
+	@Column(name="is_active")
+	private Boolean isActive;
 	
 	public User() {
 		super();
@@ -92,6 +93,14 @@ public class User {
 
 	}
 
+
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
 	@Override
 	public String toString() {
