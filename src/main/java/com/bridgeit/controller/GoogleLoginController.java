@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.bridgeit.model.User;
 import com.bridgeit.service.UserService;
 import com.bridgeit.socialLogin.GoogleLogin;
@@ -36,7 +36,7 @@ public class GoogleLoginController {
 	}
 
 	@RequestMapping(value="/connectGoogle")
-	public void redirectFromGoogle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void redirectFromGoogle(HttpServletRequest request, HttpServletResponse response,HttpSession session) throws IOException {
 		
 		String sessionState = (String) request.getSession().getAttribute("STATE");
 		String googlestate = request.getParameter("state");
@@ -69,26 +69,40 @@ public class GoogleLoginController {
 		System.out.println(profile.get("email").asText());
 		User user = userService.getuserByEmail(profile.get("email").asText());
         
-		if (user == null) {
+		if (user == null) 
+		{
 			user = new User();
 			user.setEmail(profile.get("email").asText());
 			user.setIsActive(true);
 			int id = userService.addPerson(user);
-		    String token =	Token.generateToken(String.valueOf(id));
-	        System.out.println("token at Fb "+token);
-			System.out.println("send to home");
-			response.sendRedirect("http://localhost:8080/ToDoNotes/user/home");
-			return;
-		} 
-		else{
-		 String token=Token.generateToken(String.valueOf(user.getUserId()));
-		 System.out.println("token at Fb "+token);
-		 System.out.println("send to home");
-		 response.sendRedirect("http://localhost:8080/ToDoNotesApp/user/home");
-		  return;
-		}
+		 
+		    if(id>0){
+		    	   String token =	Token.generateToken(String.valueOf(id));
+				
+		    		
+				    session = request.getSession();
+				response.setHeader("Authorization", token);
+				session.setAttribute("token", token);
+				response.sendRedirect("http://localhost:8080/ToDoNotes/#!/dummy");
+				return;
+			}
+			else{
+			
+				response.sendRedirect("http://localhost:8080/ToDoNotes/#!/login");
+				return;
+			}
+	}
+	else{
 		
+		String token =	Token.generateToken(String.valueOf(user.getUserId()));
 		
+	    session = request.getSession();
+		session.setAttribute("token", token);
+		response.sendRedirect("http://localhost:8080/ToDoNotes/#!/dummy");
+		return;
+	
+        }
+
 }
 	
 }

@@ -1,0 +1,67 @@
+<div>
+  <nav style=" background-color: #FFB42E" class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+
+          <a class="navbar-brand" >TODO NOTES</a>
+        </div>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control input-lg"  placeholder="Search">
+            </div>
+         
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Link</a></li>
+            <li class="dropdown" data-uib-dropdown>
+              <a href="logout" class="dropdown-toggle" data-uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" data-uib-dropdown-menu>
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+     
+
+      </nav>
+      </div>
+      <div id="page-content-wrapper" style="margin-top: 35px;" data-ng-blur="ShowHide1()">
+            <div class="container-fluid" id="pageContainerfluid">
+                <div class="row" ng-show="createEditableNote">
+                	<div class="col-lg-2">
+                    </div>
+                    <div class="col-lg-8" style="margin-top: 30px;padding-right: 0px;padding-left: 0px">
+                   		<!-- card division -->
+                      	<div contenteditable1 contenteditable="true" class="presentation"  data-ng-show = "IsVisible1" data-placeholder="Take a note..." data-ng-click="ShowHide()" id="initialTitle">
+                      	
+					  
+					  		<div contenteditable1 contenteditable="true" placeholder="Take a note..." data-ng-model="note" id="presentationNote"></div>
+					  		
+					  		<div id="presentationedit" style="display:inline-block;">
+					  		
+					  		
+					  			
+					  			
+					  			
+					  			
+					  				<button id="doneButton" ng-click="createNote()">
+					  					DONE
+					  				</button>
+					  			</div>
+					  		</div>
+					  		
+					  	
+					  	</div>
+					 </div>
+                    </div>	
+                    <div class="col-lg-2">
+                    </div>
+                </div>
+               
+   
+   
+    

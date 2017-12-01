@@ -82,7 +82,7 @@ public class NoteDaoImpl implements NoteDAO {
 		Query query = session.createQuery(hql);
 		query.setParameter("pin",true);
 		query.setParameter("noteid",noteId);
-		 query.executeUpdate();
+		query.executeUpdate();
 	}
 	
 	

@@ -1,0 +1,61 @@
+
+<div class="container">
+	<div class="card card-container">
+
+		<h1 class="add" align="center">Sign Up</h1>
+		<div class="form-group">
+			<font color="red">
+				<p data-ng-bind="error"></p>
+			</font>
+		</div>
+		<form name="registerForm">
+
+			<div>
+				<label for="email"><b>Email :</b></label> <input type="email"
+					name="rEmail" id="rEmail" data-ng-model="user.email"
+					placeholder="User Email.." required>
+
+			</div>
+			<span style="color: #ED2553; font-size: 14px" data-ng-show="registerForm.rEmail.$error.required && registerForm.rEmail.$touched">*Email is required.</span>
+		   <span style="color: #ED2553; font-size: 14px" data-ng-show="registerForm.rEmail.$error.email && registerForm.rEmail.$touched">*Invalid email address.</span>
+
+			<div>
+				<label for="Pass"><b>Password :</b></label> <input type="password"
+					name="rPassWord" id="rPassWord" data-ng-model="user.passWord"
+					placeholder="PassWord..." required>
+
+			</div>
+			<span style="color: #ED2553; font-size: 14px"
+				data-ng-show="registerForm.rPassWord.$error.required && registerForm.rPassWord.$touched">*passWord
+				is required.</span> 
+				
+				<div>
+				<label for="Pass"><b> Repeat - Password :</b></label> <input type="password"
+					name="rPassWord" id="PassWord" 
+					placeholder="PassWord..." required>
+
+			</div>
+			<span style="color: #ED2553; font-size: 14px"
+				data-ng-show="registerForm.PassWord.$error.required && registerForm.PassWord.$touched">*Re-passWord
+				is required.</span>
+			
+			<div>
+				<label for="phnNo"><b> Mobile Number :</b></label> <input type="tel"
+					name="phnNo" id="phnNo" 
+					placeholder="PassWord..." data-ng-model="user.phnNo"" required>
+
+			</div>
+			<span style="color: #ED2553; font-size: 14px"
+				data-ng-show="registerForm.phnNo.$error.required && registerForm.phnNo.$touched">*Mobile Number
+				is required.</span>
+			
+			<p>
+				By creating an account you agree to our <a href="#">Terms
+					Privacy</a>.
+			</p>
+			<input type="submit" class="button" data-ng-click="registerUser()" value="Sign Up" />
+		</form>
+
+	</div>
+</div>
+

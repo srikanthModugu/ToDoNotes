@@ -51,9 +51,6 @@ private UserService service;
 			errors.rejectValue("email","login.email.patren");
 		}
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"passWord" , "login.password.required");
-		
-		
-		
 		if((user.getPassWord().length()<=8 || user.getPassWord().length()>16)){
 			System.out.println("haiiii");
 			errors.rejectValue("passWord","login.password.patren");

@@ -1,0 +1,55 @@
+
+
+
+<div class="container">
+	<div class="card card-container">
+		<h1 style="color: #2F72CD" align="center">Log In</h1>
+		<div class="form-group">
+			<font color="red">
+				<p data-ng-bind="error"></p>
+			</font>
+		</div>
+		<form name="loginForm">
+			<img id="profile-img" class="profile-img-card"
+				src="images/profile.png" />
+			<div>
+				<label for="lEmail">Email :</label> <input type="email"
+					name="lEmail" id="lEmail" data-ng-model="login.email"
+					placeholder="User Email.." required>
+
+			</div>
+			<span style="color: #ED2553; font-size: 14px"
+				data-ng-show="loginForm.lEmail.$error.required && loginForm.lEmail.$touched">*Email
+				is required.</span> <span style="color: #ED2553; font-size: 14px"
+				data-ng-show="loginForm.lEmail.$error.email && loginForm.lEmail.$touched">*Invalid
+				email address.</span>
+
+			<div>
+				<label for="lPassWord">PassWord :</label> <input type="password"
+					name="lPassWord" id="lPassWord" data-ng-model="login.passWord"
+					placeholder="PassWord..." required>
+
+			</div>
+			<span style="color: #ED2553; font-size: 14px"
+				data-ng-show="loginForm.lPassWord.$error.required && loginForm.lPassWord.$touched">*Password
+				is required.</span>
+              
+              <a data-ui-sref="forgot" style="color: black;">Forgot password?</a>
+			<div class="container">
+				<input data-ng-disabled="!loginForm.$valid" class="button button1"
+					type="submit" data-ng-click="loginUser()" value="Login" /> <a
+					data-ui-sref="register"><button class="button" type="button">Registration</button></a>
+			</div>
+            
+		</form>
+<div id="social">
+	<a class="facebookBtn smGlobalBtn" href="faceBookLogin"></a> <a
+		class="googleplusBtn smGlobalBtn" href="googleLogin"></a>
+
+</div>
+	</div>
+</div>
+
+
+
+

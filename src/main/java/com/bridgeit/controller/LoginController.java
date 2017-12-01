@@ -40,6 +40,7 @@ public class LoginController {
 	@RequestMapping(value="/login",method=RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CustomeResponse> login(@RequestBody Login login,BindingResult result,HttpServletRequest request,HttpServletResponse response) throws IOException 
 	{
+		System.out.println("the values"+login);
 		
 		CustomeResponse myResponse = new CustomeResponse();
 		try{
@@ -52,6 +53,7 @@ public class LoginController {
 			if(user !=null && user.getIsActive() == true)
 			{
 				String token = Token.generateToken(String.valueOf(user.getUserId()));
+				response.setHeader("Authorization", token);
 				System.out.println("Token  "+token);
 				myResponse.setMessage("Login SucessFully");
 				myResponse.setStatus(1);
@@ -88,7 +90,7 @@ public class LoginController {
 	
 	
 	
-	@RequestMapping(value = "/forget", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/forgot", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CustomeResponse> forget(@RequestBody Login login) {
 		
 		CustomeResponse myResponse = new CustomeResponse();
@@ -114,7 +116,7 @@ public class LoginController {
 		}
 		emailService.sendOTP(login.getEmail(), otpNum);
 		myResponse.setMessage("OTP is Generated");
-		myResponse.setStatus(-1);
+		myResponse.setStatus(1);
 		return new ResponseEntity<CustomeResponse>(myResponse, HttpStatus.OK);
 
 	}
@@ -122,18 +124,21 @@ public class LoginController {
 	
 	
 	@RequestMapping(value = "/resetPassword", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomeResponse> resetPassword(@RequestBody Login login) {
+	public ResponseEntity<CustomeResponse> resetPassword(@RequestBody Login login,HttpServletResponse response) {
 		
 		CustomeResponse myResponse = new CustomeResponse();
 		try{
 		if(!userService.verifyOTP(login))
 		{
+			
 			myResponse.setMessage("OTP iS MissMatching");
 			myResponse.setStatus(-1);
 			return new ResponseEntity<CustomeResponse>(myResponse, HttpStatus.NOT_ACCEPTABLE);
 		}
 		
+		
 		userService.updatePassWord(login);
+		
 		myResponse.setStatus(1);
 		myResponse.setMessage("PassWord Reset Sucessfully");
 		return new ResponseEntity<CustomeResponse>(myResponse, HttpStatus.OK);

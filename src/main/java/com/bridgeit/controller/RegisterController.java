@@ -32,9 +32,10 @@ public class RegisterController {
 	@Autowired
 	private EmailService emailService;
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/userRegister", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CustomeResponse> Register(@RequestBody User user, BindingResult result,
 			HttpServletRequest request) {
+		System.out.println("register values "+user);
 		CustomeResponse myResponse = new CustomeResponse();
 		try{
 		regVal.validate(user, result);

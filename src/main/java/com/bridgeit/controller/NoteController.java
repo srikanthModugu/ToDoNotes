@@ -166,7 +166,7 @@ public class NoteController {
 			myResponse.setMessage("sucessFully cleared Trash");
 			myResponse.setStatus(1);
 			return new ResponseEntity<CustomeResponse>(myResponse, HttpStatus.OK);
-		} catch (Exception e) {
+		} catch (Exception e) {													
 
 			e.printStackTrace();
 			myResponse.setMessage("some error occured ");
