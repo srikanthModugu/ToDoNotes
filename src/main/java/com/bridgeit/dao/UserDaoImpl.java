@@ -2,12 +2,16 @@ package com.bridgeit.dao;
 
 import java.util.List;
 import javax.persistence.Query;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import com.bridgeit.model.Login;
 import com.bridgeit.model.User;
+
 
 public class UserDaoImpl implements UserDAO {
 
@@ -22,24 +26,32 @@ public class UserDaoImpl implements UserDAO {
 		return id;
 	}
 
-	public User authPerson(Login login) {
+	public User authPerson(Login login) 
+	{
 
 		Session session = sessionFactory.getCurrentSession();
-      
-		Query query = session.createQuery("FROM com.bridgeit.model.User where user_email = :email");
-	
-		query.setParameter("email", login.getEmail());
-         
-		List<User> ls = query.getResultList();
-		if (ls.size() == 1) {
-
-			User user = ls.get(0);
-			if (BCrypt.checkpw(login.getPassWord(), user.getPassWord())) {
-				return user;
-			}
+		
+		Criteria criteria = session.createCriteria(User.class);
+		User user = (User) criteria.add(Restrictions.conjunction()
+								   .add(Restrictions.eq("email", login.getEmail())))
+								   .uniqueResult();
+		if (BCrypt.checkpw(login.getPassWord(), user.getPassWord())) {
+			return user;
 		}
+		
 		return null;
 	}
+		//Query query = session.createQuery("FROM com.bridgeit.model.User where user_email = :email");
+				//query.setParameter("email", login.getEmail());
+				//List<User> ls = query.getResultList();
+				/*if (ls.size() == 1) {
+
+					User user = ls.get(0);
+					if (BCrypt.checkpw(login.getPassWord(), user.getPassWord())) {
+						return user;
+					}
+				}*/
+	
 
 	public Boolean authPerson(String email) {
 

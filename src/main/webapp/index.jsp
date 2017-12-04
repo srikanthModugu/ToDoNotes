@@ -10,6 +10,9 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
 <script type="text/javascript" src="script/ToDoNotes.js"></script>
 
+<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js">
+</script>
+
 <script type="text/javascript" src="controller/loginController.js"></script>
 <script type="text/javascript" src="controller/registerController.js"></script>
 <script type="text/javascript" src="controller/dummyController.js"></script>
@@ -18,17 +21,18 @@
 <script type="text/javascript" src="controller/forgotPassWordController.js"></script>
 
 <script type="text/javascript" src="services/loginService.js"></script>
+<script type="text/javascript" src="services/homeService.js"></script>
 <script type="text/javascript" src="services/registerService.js"></script>
 <script type="text/javascript" src="services/dummyService.js"></script>
 <script type="text/javascript" src="services/forgotPasswordService.js"></script>
 <script type="text/javascript" src="services/restPassWordService.js"></script>
-
+<script type="text/javascript" src="Directive/coustomeDirective.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	
 <link rel="stylesheet" type="text/css" href="css/RegisterView.css" />
-<link rel="stylesheet" type="text/css" href="css/home.css" />
+<link rel="stylesheet" type="text/css" href="css/Home.css" />
 <link rel="stylesheet" type="text/css" href="css/LoginView.css" />
 <link rel="stylesheet" type="text/css" href="css/button.css" />
 

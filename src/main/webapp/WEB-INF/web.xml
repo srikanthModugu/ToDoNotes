@@ -18,12 +18,14 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	<filter>
-	<filter-name>autherization</filter-name>
-	<filter-class>com.bridgeit.filter.Autherizationfilter</filter-class>
+
+<filter>
+		<filter-name>LogFilter</filter-name>
+		<filter-class>com.bridgeit.filter.Autherizationfilter</filter-class>
 	</filter>
+	
 	<filter-mapping>
-	<filter-name>autherization</filter-name>
-	<url-pattern>/user/*</url-pattern>
+		<filter-name>LogFilter</filter-name>
+		<url-pattern>/user/*</url-pattern>
 	</filter-mapping>
 </web-app>

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bridgeit.dao.UserDAO;
 import com.bridgeit.model.Login;
 import com.bridgeit.model.User;
+import com.bridgeit.token.Token;
 
 public class UserService  {
 
@@ -26,9 +27,20 @@ public class UserService  {
 	}
 
 	@Transactional
-	public User authPerson(Login login) {
+	public String authUser(Login login) {
 
-		return userDao.authPerson(login);
+		User user = userDao.authPerson(login);
+		
+		String token = null;
+		
+		if(user != null && user.getIsActive() ){
+			token = Token.generateToken(String.valueOf(user.getUserId()));
+			return token;
+		}
+	
+
+		return token;
+		
 	}
 
 	@Transactional

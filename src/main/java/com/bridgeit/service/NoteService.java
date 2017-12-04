@@ -32,7 +32,7 @@ public class NoteService  {
 
 	@Transactional
 	public void updateNote(Note updatedNote) {
-		  
+		  System.out.println("it was updating");
         Note persistedNote = noteDao.getNoteById(updatedNote.getNoteId());
 		Date toDay= new Date();
 		updatedNote.setModifiedDate(toDay);

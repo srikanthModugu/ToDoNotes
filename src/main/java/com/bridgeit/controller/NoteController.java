@@ -25,7 +25,7 @@ public class NoteController {
 
 	@RequestMapping(value = "/user/addNote", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CustomeResponse> addNote(@RequestBody Note note, HttpServletRequest request) {
-
+         
 		CustomeResponse myResponse = new CustomeResponse();
 
 		try {
@@ -72,7 +72,7 @@ public class NoteController {
 		CustomeResponse myResponse = new CustomeResponse();
 		try {
 			// note.setNoteId(noteId);
-
+System.out.println("in update controller");
 			noteService.updateNote(note);
 			myResponse.setMessage("Note is updated");
 			myResponse.setStatus(1);
@@ -88,22 +88,24 @@ public class NoteController {
 	}
 
 	@RequestMapping(value = "/user/getAllNotes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomeResponse> getAllNotes(HttpServletRequest request) {
-		CustomeResponse myResponse = new CustomeResponse();
+	public List getAllNotes(HttpServletRequest request) {
+	
 		List<Note> allNotes = null;
 		try {
 			String id = (String) request.getAttribute("userid");
 			allNotes = noteService.getallNotes(Integer.valueOf(id));
 			System.out.println(allNotes);
-			myResponse.setMessage("Got all the notes");
+		/*	myResponse.setMessage("Got all the notes");
 			myResponse.setStatus(1);
-			return new ResponseEntity<CustomeResponse>(myResponse, HttpStatus.OK);
+			return new ResponseEntity<CustomeResponse>(myResponse, HttpStatus.OK);*/
+			return allNotes;
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			myResponse.setMessage("Didn't got the notes ");
+			return allNotes;
+			/*myResponse.setMessage("Didn't got the notes ");
 			myResponse.setStatus(-1);
-			return new ResponseEntity<CustomeResponse>(myResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<CustomeResponse>(myResponse, HttpStatus.INTERNAL_SERVER_ERROR);*/
 		}
 	}
 

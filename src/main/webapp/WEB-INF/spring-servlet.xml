@@ -26,6 +26,7 @@
 	<mvc:resources location="/template/" mapping="/template/**"/>
 	<mvc:resources location="/controller/" mapping="/controller/**"/>
 	<mvc:resources location="/services/" mapping="/services/**"/>
+		<mvc:resources location="/Directive/" mapping="/Directive/**"/>
 	<bean id="userService" class="com.bridgeit.service.UserService" />
 
 	<bean id="userDao" class="com.bridgeit.dao.UserDaoImpl" />
@@ -36,7 +37,7 @@
 
 	<bean id="regVal" class="com.bridgeit.validation.RegisterValidator" />
 
-	<bean id="logVal" class="com.bridgeit.validation.LoginValidator" />
+	<bean id="loginValidator" class="com.bridgeit.validation.LoginValidator" />
     
     <bean id="noteDao" class="com.bridgeit.dao.NoteDaoImpl"/>
     

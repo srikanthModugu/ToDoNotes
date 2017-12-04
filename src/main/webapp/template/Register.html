@@ -13,7 +13,7 @@
 			<div>
 				<label for="email"><b>Email :</b></label> <input type="email"
 					name="rEmail" id="rEmail" data-ng-model="user.email"
-					placeholder="User Email.." required>
+					placeholder="some@domain.com" required>
 
 			</div>
 			<span style="color: #ED2553; font-size: 14px" data-ng-show="registerForm.rEmail.$error.required && registerForm.rEmail.$touched">*Email is required.</span>
@@ -22,7 +22,7 @@
 			<div>
 				<label for="Pass"><b>Password :</b></label> <input type="password"
 					name="rPassWord" id="rPassWord" data-ng-model="user.passWord"
-					placeholder="PassWord..." required>
+					placeholder="contain alfaNumeric" required>
 
 			</div>
 			<span style="color: #ED2553; font-size: 14px"
@@ -32,7 +32,7 @@
 				<div>
 				<label for="Pass"><b> Repeat - Password :</b></label> <input type="password"
 					name="rPassWord" id="PassWord" 
-					placeholder="PassWord..." required>
+					placeholder="same as above" required>
 
 			</div>
 			<span style="color: #ED2553; font-size: 14px"
@@ -42,7 +42,7 @@
 			<div>
 				<label for="phnNo"><b> Mobile Number :</b></label> <input type="tel"
 					name="phnNo" id="phnNo" 
-					placeholder="PassWord..." data-ng-model="user.phnNo"" required>
+					placeholder="9000214531" data-ng-model="user.phnNo"" required>
 
 			</div>
 			<span style="color: #ED2553; font-size: 14px"

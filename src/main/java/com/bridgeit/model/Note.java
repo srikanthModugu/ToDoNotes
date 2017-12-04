@@ -45,7 +45,7 @@ public class Note {
 	
 	@JsonIgnore
 	@JoinColumn(name="userId")
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private User user;
 	
 	

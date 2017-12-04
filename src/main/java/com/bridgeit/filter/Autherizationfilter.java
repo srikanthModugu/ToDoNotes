@@ -40,6 +40,7 @@ public class Autherizationfilter implements Filter {
 			response.setContentType("application/json");
 			String jsonResp = "{\"status\":\"404\",\"errorMessage\":\"Exception Invalid token....\"}";
 			response.getWriter().write(jsonResp);
+			response.sendRedirect("http://localhost:8080/ToDoNotes/#!/login");
 			return;
 
 		} 
@@ -49,6 +50,7 @@ public class Autherizationfilter implements Filter {
 			response.setContentType("application/json");
 			String jsonResp = "{\"status\":\"500\",\"errorMessage\":\"Exception Invalid token....\"}";
 			response.getWriter().write(jsonResp);
+			response.sendRedirect("http://localhost:8080/ToDoNotes/#!/login");
 			return;
 		}
 
@@ -57,7 +59,7 @@ public class Autherizationfilter implements Filter {
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 	
-		
+		System.out.println("its coming init");
 	}
 
 }

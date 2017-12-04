@@ -34,13 +34,16 @@ public class NoteDaoImpl implements NoteDAO {
 	@Override
 	public void updateNote(Note updatedNote) {
 
-		String hql = "UPDATE com.bridgeit.model.Note set note_title=:title,note_description=:description,note_cretedDate=:noteCreatedDate,note_modifiedDate=:noteEditedDate WHERE noteId = :noteid";
+		String hql = "UPDATE com.bridgeit.model.Note set note_title=:title,note_description=:description,note_cretedDate=:noteCreatedDate,note_modifiedDate=:noteEditedDate,is_archive=:archive,is_trash=:trash,is_pinned=:pinned WHERE noteId = :noteid";
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(hql);
 		query.setParameter("title", updatedNote.getTitle());
 		query.setParameter("description", updatedNote.getDescription());
 		query.setParameter("noteCreatedDate", updatedNote.getCreatedDate());
 		query.setParameter("noteEditedDate", updatedNote.getModifiedDate());
+		query.setParameter("archive", updatedNote.isArchive());
+		query.setParameter("trash", updatedNote.isTrash());
+		query.setParameter("pinned", updatedNote.isPinned());
 		query.setParameter("noteid", updatedNote.getNoteId());
 		 query.executeUpdate();
 		System.out.println("query executed successfully...");
