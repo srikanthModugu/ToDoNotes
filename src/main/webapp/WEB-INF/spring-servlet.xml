@@ -19,6 +19,10 @@
 	<context:component-scan base-package="com.bridgeit" />
 
 	<mvc:annotation-driven />
+	 
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+         <property name="basenames" value="validResources/validation"/>
+	</bean>
 <mvc:resources mapping="/bower_components/**" location="/bower_components/" />
 	<mvc:resources mapping="/script/**" location="/script/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
@@ -47,10 +51,7 @@
     
     <bean id="googleLogin" class="com.bridgeit.socialLogin.GoogleLogin"/>
    
-   
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-         <property name="basenames" value="validResources/validation"/>
-	</bean>
+  
 
 	<context:property-placeholder location="classpath:message.properties" />
 

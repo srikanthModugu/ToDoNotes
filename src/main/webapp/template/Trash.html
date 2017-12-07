@@ -1,0 +1,33 @@
+<top-nav-bar></top-nav-bar>
+<side-nav-bar></side-nav-bar>
+
+
+	<div id="main" style="margin-left: {{mleft}}" >
+	
+
+	<div id="note-container"
+		class=" col-sm-12 col-md-12 col-xs-12 col-lg-12">
+		<div class="col-lg-1 col-md-1 hidden-sm"></div>
+		<div class="col-md-10 col-sm-12 col-xs-12 col-lg-10">
+      	<h4 align="center">Notes in Trash are deleted after 7 days .<a  data-ng-click="emptyTrash()"> EMPTY TRASH NOW</a></h4> 
+  
+   <div class="card" data-ng-repeat="note in notes |filter:{trash:true,archive:false}">
+      <h4 class="card-title" data-ng-bind-html="note.title"></h4>
+      <p class="card-text" data-ng-bind-html="note.description"></p>
+      <div class="note-icons">
+						<div class="dropdown inline pull-right">
+							<img data-ng-src='images/more.svg' width="19px" height="19px"
+								data-toggle="dropdown">
+							<ul class="dropdown-menu">
+								<li><a  data-ng-click="deleteForever(note.noteId)">Delete forever</a></li>
+								<li><a  data-ng-click="restoreToNotes(note)">Restore</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-1 col-md-1"></div>
+</div>
+	
+	

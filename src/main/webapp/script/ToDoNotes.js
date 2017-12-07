@@ -35,6 +35,16 @@ toDoNotes.config([ '$stateProvider', '$urlRouterProvider',
 				templateUrl : 'template/ResetPassword.html',
 				controller : 'restPassWordController'
 			});
+			$stateProvider.state('trash', {
+				url : '/user/trash',
+				templateUrl : 'template/Trash.html',
+				controller : 'homeController'
+			});
+			$stateProvider.state('archive', {
+				url : '/user/archive',
+				templateUrl : 'template/Archive.html',
+				controller : 'homeController'
+			});
 			$urlRouterProvider.otherwise('login');
 
 		} ]);

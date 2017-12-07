@@ -1,8 +1,14 @@
 package com.bridgeit.token;
 
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -31,7 +37,7 @@ public class Token{
 }
 
 	
-	public static String verfyToken(String token) {
+	public static String verfyToken(String token) throws IOException {
 		try {
 			System.out.println("printing token here  "+token);
 			 Claims claims = Jwts.parser()
@@ -42,7 +48,10 @@ public class Token{
 		} catch (Exception ex) {
 				System.out.println(token);
 				ex.printStackTrace();
+			
+			
 				return null;
+				
 			}
 
 	

@@ -35,7 +35,8 @@
 <link rel="stylesheet" type="text/css" href="css/Home.css" />
 <link rel="stylesheet" type="text/css" href="css/LoginView.css" />
 <link rel="stylesheet" type="text/css" href="css/button.css" />
-
+<link rel="stylesheet" type="text/css" href="css/sidenav.css" />
+<link rel="stylesheet" type="text/css" href="css/card.css" />
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 

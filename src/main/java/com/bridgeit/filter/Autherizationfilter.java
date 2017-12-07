@@ -9,6 +9,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.bridgeit.token.Token;
 
 
@@ -37,20 +39,18 @@ public class Autherizationfilter implements Filter {
 				chain.doFilter(req, res);
 				return;
 			}
-			response.setContentType("application/json");
-			String jsonResp = "{\"status\":\"404\",\"errorMessage\":\"Exception Invalid token....\"}";
-			response.getWriter().write(jsonResp);
-			response.sendRedirect("http://localhost:8080/ToDoNotes/#!/login");
+	            HttpSession	session = request.getSession(false);
+				session.setAttribute("token", null);
+				response.sendRedirect("http://localhost:8080/ToDoNotes/#!/dummy");
 			return;
 
 		} 
 		
 		catch (Exception e) {
 
-			response.setContentType("application/json");
-			String jsonResp = "{\"status\":\"500\",\"errorMessage\":\"Exception Invalid token....\"}";
-			response.getWriter().write(jsonResp);
-			response.sendRedirect("http://localhost:8080/ToDoNotes/#!/login");
+			    HttpSession	session = request.getSession(false);
+				session.setAttribute("token", null);
+				response.sendRedirect("http://localhost:8080/ToDoNotes/#!/dummy");
 			return;
 		}
 

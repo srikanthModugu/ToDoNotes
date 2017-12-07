@@ -18,12 +18,13 @@ import com.bridgeit.model.Note;
 import com.bridgeit.service.NoteService;
 
 @RestController
+@RequestMapping(value="/user")
 public class NoteController {
 
 	@Autowired
 	private NoteService noteService;
 
-	@RequestMapping(value = "/user/addNote", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/addNote", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CustomeResponse> addNote(@RequestBody Note note, HttpServletRequest request) {
          
 		CustomeResponse myResponse = new CustomeResponse();
@@ -45,8 +46,8 @@ public class NoteController {
 		}
 	}
 
-	@RequestMapping(value = "/user/deleteNote/{noteId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomeResponse> deleteNote(@PathVariable("noteId") int noteId) {
+	@RequestMapping(value = "/deleteNote/{noteId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CustomeResponse> deleteNote(@PathVariable("noteId") long noteId) {
 
 		CustomeResponse myResponse = new CustomeResponse();
 		try {
@@ -67,12 +68,12 @@ public class NoteController {
 
 	}
 
-	@RequestMapping(value = "/user/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CustomeResponse> updateNote(@RequestBody Note note) {
 		CustomeResponse myResponse = new CustomeResponse();
 		try {
 			// note.setNoteId(noteId);
-System.out.println("in update controller");
+            System.out.println("in update controller");
 			noteService.updateNote(note);
 			myResponse.setMessage("Note is updated");
 			myResponse.setStatus(1);
@@ -87,7 +88,7 @@ System.out.println("in update controller");
 		}
 	}
 
-	@RequestMapping(value = "/user/getAllNotes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/getAllNotes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List getAllNotes(HttpServletRequest request) {
 	
 		List<Note> allNotes = null;
@@ -109,10 +110,11 @@ System.out.println("in update controller");
 		}
 	}
 
-	@RequestMapping(value = "/user/updateToArchive/{noteId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomeResponse> updateToArchive(@PathVariable("noteId") int noteId) {
+	@RequestMapping(value = "/updateToArchive/{noteId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CustomeResponse> updateToArchive(@PathVariable("noteId") long noteId) {
 		CustomeResponse myResponse = new CustomeResponse();
 		try {
+			System.out.println("url is working fine");
 			noteService.updateNoteToArchive(noteId);
 			myResponse.setMessage("updated to archive sucessFully");
 			myResponse.setStatus(1);
@@ -126,8 +128,8 @@ System.out.println("in update controller");
 		}
 	}
 
-	@RequestMapping(value = "/user/updteToPin/{noteId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomeResponse> updteToPin(@PathVariable("noteId") int noteId) {
+	@RequestMapping(value = "/updteToPin/{noteId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CustomeResponse> updteToPin(@PathVariable("noteId") long noteId) {
 		CustomeResponse myResponse = new CustomeResponse();
 		try {
 			noteService.updateNotePin(noteId);
@@ -143,8 +145,8 @@ System.out.println("in update controller");
 		}
 	}
 
-	@RequestMapping(value = "/user/updateTotrash/{noteId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CustomeResponse> updateTotrash(@PathVariable("noteId") int noteId) {
+	@RequestMapping(value = "/updateTotrash/{noteId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CustomeResponse> updateTotrash(@PathVariable("noteId") long noteId) {
 		CustomeResponse myResponse = new CustomeResponse();
 		try {
 			noteService.UpdateNoteToTrash(noteId);
@@ -159,7 +161,8 @@ System.out.println("in update controller");
 			return new ResponseEntity<CustomeResponse>(myResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	@RequestMapping(value = "/user/emptyTrash", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	
+	@RequestMapping(value = "/emptyTrash", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<CustomeResponse> emptyTrash(HttpServletRequest request) {
 		CustomeResponse myResponse = new CustomeResponse();
 		try {

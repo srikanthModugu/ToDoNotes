@@ -1,0 +1,56 @@
+<nav class="navbar navbar-default navbar-fixed-top"
+	style="background-color: {{navBg}}" class="col-sm-12 col md-12 col-lg-12">
+
+
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header"></div>
+
+		<span class="nav navbar-nav" id="sidebarbtn" style="cursor: pointer"
+			data-ng-click="showSidebar()">&#9776;</span> <a class="navbar-brand"
+			href="#!/user/home"><font color="black" size="5">{{navName}}</font></a>
+
+
+
+		<form class="navbar-form navbar-left" role="search">
+			<div class="form-group">
+
+				<input type="text" class="form-control input-lg"
+					data-ng-model="noteFilter" style="width: 600px; height: 40px"
+					placeholder="Search">
+			</div>
+
+		</form>
+			<div id="navbar"  class="navbar-collapse  collapse  hidden-sm hidden-xs">
+			<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown " style="width: 100%"> 
+					<img data-ng-src="images/profile.png"
+							class="img-circle profile-pic dropdown-toggle" data-toggle="dropdown"
+							alt="srikanth" >
+					
+						<ul class="dropdown-menu profile-dropdown">
+						<div class="row">
+						     <img data-ng-src="images/profile.png"
+							class="img-circle col-sm-4" alt="srikanth" width="100" height="100"  data-ng-click="openImageUploader(user,'user')">
+							<div class="col-sm-6">
+							<font size="5px"><b>{{}}</b></font>
+							
+						</div>
+						<div class="col-sm-1"></div>
+						</div>
+							<li role="separator" class="divider"></li>
+							<li><a href="#!/home" data-ng-click="signout()">Sign out</a></li>
+
+						</ul>
+						</li>
+						</ul>
+				</div>
+		
+             
+		</div>
+		
+
+
+
+
+</nav>

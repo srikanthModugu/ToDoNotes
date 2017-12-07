@@ -1,0 +1,33 @@
+<div class="sidenav" style="width:{{width}}">
+<a data-ui-sref="home">Notes</a>
+
+<a >Reminders</a>
+<hr>
+<div class="row">
+<div class="col-sm-6">
+	<a data-ui-sref="home">Lables</a>
+	</div>
+	<div class="col-sm-1"></div>
+	<div class="col-sm-4">
+	<a  data-ng-click="addLabelmodal()" style="font-size: 15px">Edit</a>
+	</div>
+	<div class="col-sm-1"></div>
+</div>
+<div data-ng-repeat="label in user.labels">
+<div class="row">
+<div class="col-sm-1"></div>
+
+<div class="col-sm-1"><img data-ng-src="images/label.svg" id="labelIcon"></div>
+<div class="col-sm-5">
+
+<a data-ui-sref="">Label</a>
+</div>
+</div>
+
+</div>
+
+<hr>
+
+<a data-ui-sref="archive">Archives</a>
+<a data-ui-sref="trash" >Trash</a>
+</div>

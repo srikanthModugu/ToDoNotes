@@ -16,18 +16,18 @@ var notes ={};
 	}
 		})
 	}
-
-	
-	notes.Notes = function(method,url) {
-	console.log("inside getAllNotes");
+	notes.noteCrud = function(method,url) {
+		console.log("inside login archive service method");
+		
 		return $http({
 			method : method,
 			url : url,
-			headers :{
-				'token' : localStorage.getItem('token')
-			}		
+			
+			  headers: {
+			        'token': localStorage.getItem('token')
+	}
 		})
-}
-	
+	}
+
 	return notes;
 });
