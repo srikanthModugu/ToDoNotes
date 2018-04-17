@@ -36,7 +36,7 @@ public class FBLoginController {
 		request.getSession().setAttribute("STATE", unid);
 	
 		String faceBookLogInURL= fbLogin.getFaceBookURL(unid);
-        System.out.println("its coming here");
+        System.out.println("its coming to print something gdfjhfhdfdfdfdjfhere");
 		response.sendRedirect("www.google.com");
 		
 }
